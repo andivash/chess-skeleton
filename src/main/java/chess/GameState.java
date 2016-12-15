@@ -3,8 +3,7 @@ package chess;
 
 import chess.pieces.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Class that represents the current state of the game.  Basically, what pieces are in which positions on the
@@ -100,5 +99,18 @@ public class GameState {
      */
     private void placePiece(Piece piece, Position position) {
         positionToPieceMap.put(position, piece);
+    }
+
+    /**
+     * Get position of pieces for given player
+     * @param player for which Player should be returned positions
+     * @return {@code Set} of positions for given player.
+     */
+    public Set<Position> getPlayerPositions(Player player){
+        Set<Position> resultPieces = new HashSet<Position>();
+        for(Map.Entry<Position, Piece> entry : positionToPieceMap.entrySet()){
+            if(entry.getValue().getOwner() == player) resultPieces.add(entry.getKey());
+        }
+        return resultPieces;
     }
 }

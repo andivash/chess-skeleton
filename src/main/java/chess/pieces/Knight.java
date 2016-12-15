@@ -5,7 +5,7 @@ import chess.Player;
 /**
  * The Knight class
  */
-public class Knight extends Piece {
+public class Knight extends Piece implements KnightMovement {
     public Knight(Player owner) {
         super(owner);
     }

@@ -52,6 +52,14 @@ public class CLITest {
     }
 
     @Test
+    public void testListAllPossibleMovesCommand() throws Exception {
+        runCliWithInput("list");
+
+        List<String> output = captureOutput();
+        assertEquals("Should have 26 output calls for base ches positions", 26, output.size());
+    }
+
+    @Test
     public void testNewCommand() throws Exception {
         runCliWithInput("new");
         List<String> output = captureOutput();

@@ -5,7 +5,7 @@ import chess.Player;
 /**
  * The 'Bishop' class
  */
-public class Bishop extends Piece {
+public class Bishop extends Piece implements DiagonalMovement {
     public Bishop(Player owner) {
         super(owner);
     }

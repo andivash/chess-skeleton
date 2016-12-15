@@ -24,4 +24,12 @@ public class PositionTest {
 
         assertEquals("The positions should equal each other", one, other);
     }
+
+    @Test
+    public void testInvalidPosition() {
+
+        assertTrue("The position a 1 is valid", Position.isValidPosition('a', 1));
+        assertFalse("The position a 10 is invalid", Position.isValidPosition('a', 10));
+        assertFalse("The position a 10 is invalid", Position.isValidPosition('z', 1));
+    }
 }

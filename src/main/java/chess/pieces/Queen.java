@@ -5,7 +5,7 @@ import chess.Player;
 /**
  * The Queen
  */
-public class Queen extends Piece{
+public class Queen extends Piece implements DiagonalMovement, StraightMovement {
     public Queen(Player owner) {
         super(owner);
     }

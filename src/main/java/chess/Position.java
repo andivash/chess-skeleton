@@ -65,4 +65,13 @@ public class Position {
         return "" + column + row;
     }
 
+    /**
+     * Check validity of position by column and row
+     * @param column
+     * @param row
+     * @return {@code true} if position is valid, {@code false} otherwise
+     */
+    public static boolean isValidPosition(char column, int row){
+        return (column > MAX_COLUMN || column < MIN_COLUMN || row > MAX_ROW || row < MIN_ROW)?false:true;
+    }
 }

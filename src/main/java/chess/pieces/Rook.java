@@ -5,7 +5,7 @@ import chess.Player;
 /**
  * The 'Rook' class
  */
-public class Rook extends Piece {
+public class Rook extends Piece implements StraightMovement{
 
     public Rook(Player owner) {
         super(owner);
