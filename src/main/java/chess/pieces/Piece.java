@@ -1,6 +1,5 @@
 package chess.pieces;
 
-import chess.MoveSettings;
 import chess.Player;
 
 /**
@@ -8,7 +7,6 @@ import chess.Player;
  */
 public abstract class Piece {
     private final Player owner;
-    private MoveSettings moveSettings;
 
     protected Piece(Player owner) {
         this.owner = owner;
@@ -25,14 +23,6 @@ public abstract class Piece {
 
     public Player getOwner() {
         return owner;
-    }
-
-    public void setMoveSettings(MoveSettings settings){
-        this.moveSettings = settings;
-    }
-
-    public MoveSettings getMoveSettings(){
-        return this.moveSettings;
     }
 
     protected abstract char getIdentifyingCharacter();

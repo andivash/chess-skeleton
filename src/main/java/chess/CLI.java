@@ -3,7 +3,6 @@ package chess;
 import chess.pieces.Piece;
 
 import java.io.*;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -90,7 +89,7 @@ public class CLI {
 
         for(Position position : ownerPositions){
             Piece piece = gameState.getPieceAt(position);
-            List<Move> possibleMoves = movement.getPossibleMoves(piece, position);
+            Set<Move> possibleMoves = movement.getPossibleMoves(piece, position);
             if(possibleMoves.size() > 0){
                 for(Move move : possibleMoves) {
                     writeOutput(move.toString());

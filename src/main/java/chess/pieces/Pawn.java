@@ -5,7 +5,7 @@ import chess.Player;
 /**
  * The Pawn
  */
-public class Pawn extends Piece {
+public class Pawn extends Piece implements OneStepMovable{
     public Pawn(Player owner) {
         super(owner);
     }

@@ -2,8 +2,7 @@ package chess;
 
 import chess.pieces.*;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,6 +14,7 @@ public class Movement {
 
     private Set<Position> ownerPositions;
     private Set<Position> opponentPositions;
+
     private final int MAX_ITERATION = 8;
     private final int ONE_ITERATION = 1;
 
@@ -27,10 +27,10 @@ public class Movement {
     }
 
 
-    public List<Move> getPossibleMoves(Piece piece, Position position){
+    public Set<Move> getPossibleMoves(Piece piece, Position position){
         //add owner positions and opposit positions
-        List<Move> resultMovesList = new LinkedList<Move>();
-        int radius = (piece.getMoveSettings() == null) ? MAX_ITERATION : piece.getMoveSettings().getRadius();
+        Set<Move> resultMovesList = new HashSet<Move>();
+        int radius = (piece instanceof OneStepMovable) ? ONE_ITERATION : MAX_ITERATION;
 
         if(piece instanceof StraightMovement){
             //move straight top
@@ -67,7 +67,7 @@ public class Movement {
         //TODO looks ugly, need to redesign in more elegant way
         if(piece instanceof Pawn){
             int direction = (Player.White == piece.getOwner())? 1 : -1;
-            radius = 1;
+
             //special case for Pawn from initial line
             if(Player.White == piece.getOwner() && position.getRow() == 2) radius = 2;
             if(Player.Black == piece.getOwner() && position.getRow() == 7) radius = 2;
@@ -79,7 +79,7 @@ public class Movement {
         return resultMovesList;
     }
 
-    public List<Move> move(Position position, List<Move> resultMove, int columnIncrement, int rowIncrement, int radius){
+    public Set<Move> move(Position position, Set<Move> resultMove, int columnIncrement, int rowIncrement, int radius){
 
         int row = position.getRow();
         char column = position.getColumn();
@@ -112,7 +112,7 @@ public class Movement {
     }
 
     //special case for Knight
-    public List<Move> knightMoves(Position position, List<Move> resultMove){
+    public Set<Move> knightMoves(Position position, Set<Move> resultMove){
 
         int[] rowInc = new int[]{1, 1, 2, 2, -1, -1, -2, -2};
         int[] colInc = new int[]{-2, 2, -1, 1, -2, 2, -1, 1};
