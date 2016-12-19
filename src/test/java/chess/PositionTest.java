@@ -30,6 +30,6 @@ public class PositionTest {
 
         assertTrue("The position a 1 is valid", Position.isValidPosition('a', 1));
         assertFalse("The position a 10 is invalid", Position.isValidPosition('a', 10));
-        assertFalse("The position a 10 is invalid", Position.isValidPosition('z', 1));
+        assertFalse("The position z 1 is invalid", Position.isValidPosition('z', 1));
     }
 }

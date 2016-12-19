@@ -3,6 +3,7 @@ package chess;
 import chess.pieces.Piece;
 
 import java.io.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -80,23 +81,38 @@ public class CLI {
      * Displays all possible moves from current board
      */
     private void listAllPossibleMoves(){
+        Set<Move> possibleMoves = getPossibleMovesForPlayer(gameState.getCurrentPlayer());
+
+        if(possibleMoves.size() > 0) {
+            for (Move move : possibleMoves) {
+                writeOutput(move.toString());
+            }
+        } else{
+            writeOutput("No possible moves for current player");
+        }
+    }
+
+    /**
+     * Returns set of possible moves for given player
+     * @param player - given player
+     * @return {@code Set} of Move
+     */
+    Set<Move> getPossibleMovesForPlayer(Player player){
         Movement movement = new Movement();
 
-        Set<Position> ownerPositions = gameState.getPlayerPositions(gameState.getCurrentPlayer());
-        Set<Position> opponentPositions = gameState.getPlayerPositions((gameState.getCurrentPlayer()==Player.Black)?Player.White:Player.Black);
+        Set<Position> ownerPositions = gameState.getPlayerPositions(player);
+        Set<Position> opponentPositions = gameState.getPlayerPositions((player==Player.Black)?Player.White:Player.Black);
         movement.setOpponentPositions(opponentPositions);
         movement.setOwnerPositions(ownerPositions);
 
+        Set<Move> possibleMoves = new HashSet<Move>();
+
         for(Position position : ownerPositions){
             Piece piece = gameState.getPieceAt(position);
-            Set<Move> possibleMoves = movement.getPossibleMoves(piece, position);
-            if(possibleMoves.size() > 0){
-                for(Move move : possibleMoves) {
-                    writeOutput(move.toString());
-                }
-            }
+            possibleMoves.addAll(movement.getPossibleMoves(piece, position));
         }
 
+        return possibleMoves;
     }
 
     private void doNewGame() {

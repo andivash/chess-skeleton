@@ -56,8 +56,6 @@ public class Move {
         if(startPosition != null) result *= startPosition.hashCode();
         if(endPosition != null) result *= endPosition.hashCode();
 
-        result += super.hashCode();
-
         return result;
     }
 }
